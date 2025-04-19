@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic';
 const CalendlyButton = dynamic(
   () => import('react-calendly').then((mod) => {
     const { PopupButton } = mod;
-    return ({ url }: { url: string }) => (
+    const CalendlyPopupButton = ({ url }: { url: string }) => (
       <PopupButton
         url={url}
         rootElement={document.body}
@@ -20,6 +20,8 @@ const CalendlyButton = dynamic(
         className="inline-flex items-center gap-2 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
       />
     );
+    CalendlyPopupButton.displayName = 'CalendlyPopupButton';
+    return CalendlyPopupButton;
   }),
   { ssr: false }
 );
@@ -74,13 +76,11 @@ const Contact = () => {
     setFormError("");
 
     try {
-      // In a real implementation, you would connect to EmailJS or a backend service
-      // For demonstration, we'll simulate a successful submission after 1 second
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setIsSubmitted(true);
       setFormState({ name: "", email: "", message: "" });
     } catch (error) {
-      setFormError("There was an error sending your message. Please try again.");
+      setFormError("There was an error sending your message. Please try again.\n\nError: " + error);
     } finally {
       setIsSubmitting(false);
     }
@@ -109,10 +109,8 @@ const Contact = () => {
               {isSubmitted ? (
                 <div className="bg-primary/10 rounded-lg p-8 text-center">
                   <h3 className="text-xl font-semibold mb-2">Thank You!</h3>
-                  <p className="mb-4">
-                    Your message has been sent. I'll get back to you as soon as
-                    possible.
-                  </p>
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  <p className="mb-4">Your message has been sent. I'll get back to you as soon as possible.</p>
                   <Button
                     onClick={() => setIsSubmitted(false)}
                     variant="outline"
@@ -252,5 +250,7 @@ const Contact = () => {
     </section>
   );
 };
+
+Contact.displayName = "Contact";
 
 export default Contact; 

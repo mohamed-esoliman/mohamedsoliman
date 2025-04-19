@@ -7,7 +7,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { SpeakerLoudIcon, ImageIcon, ReaderIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 
 export default function BeyondPage() {

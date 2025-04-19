@@ -49,9 +49,8 @@ export default function UnderConstructionPage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             🚧 Under Construction 🚧
           </h1>
-          <p className="text-lg mb-8 opacity-80">
-            This page is currently under construction. I'm working hard to bring you something amazing. Please check back soon!
-          </p>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          <p className="text-lg mb-8 opacity-80">This page is currently under construction. I'm working hard to bring you something amazing. Please check back soon!</p>
           
           <div className="w-full h-2 bg-primary/20 rounded-full overflow-hidden">
             <div className="h-full w-1/3 bg-primary rounded-full animate-pulse" />
